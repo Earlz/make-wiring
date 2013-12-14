@@ -3,11 +3,12 @@ CPP=avr-g++
 AR=avr-ar
 
 default: build
-build: libarduino.a
+build: ${LIBOUT}
 
-libarduino.a:   ${OBJS}
-	${AR} crs libarduino.a $(OBJS)
-	cp libarduino.a ${OUTPUTS}/lib/
+${LIBOUT}:   ${OBJS}
+	${AR} crs ${LIBOUT} $(OBJS)
+	cp *.h ${OUTPUTS}/include/
+	cp ${LIBOUT} ${OUTPUTS}/lib/
 
 .c.o: ${HDRS}
 	${CC} -I ${VARIANT} ${CFLAGS} -c $*.c

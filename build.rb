@@ -18,9 +18,9 @@ def getfiles(dir, ending)
   t
 end
 
-def domake(src, action, objs,hdrs, cppflags, cflags, arflags, out)
-  puts "make -C #{src} #{action} OBJS=\"#{objs}\" CPPFLAGS=\"#{cppflags}\" CFLAGS=\"#{cflags}\" ARFLAGS=\"#{arflags}\" OUTPUTS=\"#{out}\" HDRS=\"#{hdrs}\""
-  `make -C #{src} #{action} OBJS="#{objs}" CPPFLAGS="#{cppflags}" CFLAGS="#{cflags}" ARFLAGS="#{arflags}" OUTPUTS="#{out}" HDRS="#{hdrs}"`
+def domake(src, action, objs,hdrs, cppflags, cflags, arflags, out, lib)
+  puts "make -C #{src} #{action} OBJS=\"#{objs}\" CPPFLAGS=\"#{cppflags}\" CFLAGS=\"#{cflags}\" ARFLAGS=\"#{arflags}\" OUTPUTS=\"#{out}\" HDRS=\"#{hdrs}\" LIBOUT=\"#{lib}\""
+  `make -C #{src} #{action} OBJS="#{objs}" CPPFLAGS="#{cppflags}" CFLAGS="#{cflags}" ARFLAGS="#{arflags}" OUTPUTS="#{out}" HDRS="#{hdrs}" LIBOUT="#{lib}"`
 end
 
 if ARGV.length < 2
@@ -30,6 +30,7 @@ end
 
 `mkdir -p output/include`
 `mkdir -p output/lib`
+`cp variants/#{VARIANT}/pins_arduino.h #{OUTPUTS}/include/`
 
 action=ARGV[0] 
 library=ARGV[1]
@@ -43,5 +44,5 @@ cppflags=cflags
 hdrs=getfiles(dir, "h")
 arflags=""
 
-domake("#{dir}", action, objs, hdrs, cppflags, cflags, arflags, out)
+domake("#{dir}", action, objs, hdrs, cppflags, cflags, arflags, out, "lib#{library}.a")
 
