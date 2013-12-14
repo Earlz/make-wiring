@@ -47,7 +47,7 @@ dir="#{SOURCES}/#{library}"
 objs=getfiles(dir, "c").gsub(".c",".o");
 objs+=" "+getfiles(dir, "cpp").gsub(".cpp", ".o");
 out="../../#{OUTPUTS}"
-cflags="-I#{out}/include -I./ -I../../variants/#{VARIANT} -mmcu=#{MCU} -DF_CPU=#{CPUFREQ}"
+cflags="-I#{out}/include -I./ -I./utility/ -I../../variants/#{VARIANT} -mmcu=#{MCU} -DF_CPU=#{CPUFREQ}"
 cppflags=cflags
 hdrs=getfiles(dir, "h")
 arflags=""
