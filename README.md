@@ -1,13 +1,28 @@
 make-wiring
 ===========
 
-A copy of Arduino's wiring library with makefiles for easy building without the Arduino IDE
+I got fed up with it being difficult to build Arduino libraries from the command line/without the Arduino IDE..
+so I did something about it. 
 
-## Building
+This is a copy of the Arduino libraries (placed in src), a Makefile template, and a fancy build helper written in Ruby
 
-Go into the arduino folder to build the core Wiring library. I have everything configured for the popular atmega328p. You may need to adjust parameters in the makefile for different MCUs.
+# Usage
 
-If you're unsure of the settings needed for your board/MCU, look in boards.txt for some clues.
+Usage is quite simple
 
-Next, you can go into redbot and build the redbot library
+    ./build.sh build arduino
+    ./build.sh build Wire
+    
+and afterwards, you'll have the relevant header files and compiled libraries in the `output` directory
+
+There are three possible options for every library
+
+1. build -- This will build the library. It will not do more work than necessary
+2. clean -- This will remove all the compiled files from the src directory. It will not remove files from the output directory
+3. rebuild -- will clean and then build
+
+
+
+
+
 
