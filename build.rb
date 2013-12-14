@@ -1,5 +1,5 @@
 #!/bin/ruby
-VARIANT='standard'
+VARIANT='standard' #where to get the `pins_arduino.h` file
 CPUFREQ="16000000UL"
 MCU="atmega328p"
 
