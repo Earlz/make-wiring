@@ -1,5 +1,6 @@
 default: build
 build: ${LIBOUT}
+rebuild: clean build
 
 ${LIBOUT}:   ${OBJS}
 	${AR} crs ${LIBOUT} $(OBJS)

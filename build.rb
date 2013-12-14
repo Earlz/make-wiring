@@ -3,8 +3,8 @@ VARIANT='standard'
 CPUFREQ="16000000UL"
 MCU="atmega328p"
 
-CFLAGS="-Os"
-CPPFLAGS="-Os"
+CFLAGS="-Os -Wl,--gc-sections -ffunction-sections  -fdata-sections"
+CPPFLAGS="-Os -Wl,--gc-sections -ffunction-sections  -fdata-sections"
 
 ARFLAGS=""
 
@@ -23,7 +23,7 @@ def getfiles(dir, ending)
 end
 
 def domake(src, action, objs,hdrs, cppflags, cflags, arflags, out, lib)
-  `make -C #{src} #{action} OBJS="#{objs}" CPPFLAGS="#{cppflags}" CFLAGS="#{cflags}"\
+  `make -C #{src} #{action} OBJS="#{objs}" CPPFLAGS="#{CPPFLAGS} #{cppflags}" CFLAGS="#{CFLAGS} #{cflags}"\
       ARFLAGS="#{arflags}" OUTPUTS="#{out}" HDRS="#{hdrs}" LIBOUT="#{lib}" \
       AR="#{AR}" CC="#{CC}" CPP="#{CPP}" \
       1>&2`
