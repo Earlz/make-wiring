@@ -8,6 +8,10 @@ CPPFLAGS="-Os"
 
 ARFLAGS=""
 
+CC="avr-gcc"
+CPP="avr-g++"
+AR="avr-ar"
+
 
 SOURCES="src"
 OUTPUTS="output"
@@ -19,8 +23,11 @@ def getfiles(dir, ending)
 end
 
 def domake(src, action, objs,hdrs, cppflags, cflags, arflags, out, lib)
-  puts "make -C #{src} #{action} OBJS=\"#{objs}\" CPPFLAGS=\"#{cppflags}\" CFLAGS=\"#{cflags}\" ARFLAGS=\"#{arflags}\" OUTPUTS=\"#{out}\" HDRS=\"#{hdrs}\" LIBOUT=\"#{lib}\""
-  `make -C #{src} #{action} OBJS="#{objs}" CPPFLAGS="#{cppflags}" CFLAGS="#{cflags}" ARFLAGS="#{arflags}" OUTPUTS="#{out}" HDRS="#{hdrs}" LIBOUT="#{lib}"`
+  `make -C #{src} #{action} OBJS="#{objs}" CPPFLAGS="#{cppflags}" CFLAGS="#{cflags}"\
+      ARFLAGS="#{arflags}" OUTPUTS="#{out}" HDRS="#{hdrs}" LIBOUT="#{lib}" \
+      AR="#{AR}" CC="#{CC}" CPP="#{CPP}" \
+      1>&2`
+  #make sure to redirect STDOUT to STDERR so it's visible
 end
 
 if ARGV.length < 2

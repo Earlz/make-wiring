@@ -1,7 +1,3 @@
-CC=avr-gcc
-CPP=avr-g++
-AR=avr-ar
-
 default: build
 build: ${LIBOUT}
 
