@@ -11,10 +11,10 @@ ${LIBOUT}:   ${OBJS}
 	cp ${LIBOUT} ${OUTPUTS}/lib/
 
 .c.o: ${HDRS}
-	${CC} -I ${VARIANT} ${CFLAGS} -c $*.c
+	${CC} ${CFLAGS} -c $*.c
 
 .cpp.o: ${HDRS}
-	${CPP} -I ${VARIANT} ${CPPFLAGS} -c $*.cpp
+	${CPP} ${CPPFLAGS} -c $*.cpp
 
 clean:
 	rm -f *.o core a.out errs *.a
