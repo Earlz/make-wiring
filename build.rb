@@ -43,6 +43,7 @@ action=ARGV[0]
 library=ARGV[1]
 
 dir="#{SOURCES}/#{library}"
+`cp template.makefile #{SOURCES}/#{library}/Makefile`
 objs=getfiles(dir, "c").gsub(".c",".o");
 objs+=" "+getfiles(dir, "cpp").gsub(".cpp", ".o");
 out="../../#{OUTPUTS}"
@@ -52,4 +53,4 @@ hdrs=getfiles(dir, "h")
 arflags=""
 
 domake("#{dir}", action, objs, hdrs, cppflags, cflags, arflags, out, "lib#{library}.a")
-
+`rm -f "#{SOURCES}/#{library}/Makefile"`

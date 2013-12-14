@@ -17,3 +17,5 @@
 *.out
 *.app
 output
+#ignore makefiles because we put them there
+Makefile 
